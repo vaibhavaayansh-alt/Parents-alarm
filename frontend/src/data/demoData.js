@@ -1,4 +1,4 @@
- // ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════
 // Shemford Futuristic School — Demo Data
 // ═══════════════════════════════════════════════
 
@@ -284,4 +284,52 @@ export const PERIOD_TIMES = ['08:00–08:45', '08:45–09:30', '09:45–10:30', 
 
 export const UPCOMING_EXAMS = [
   { id: 1, name: 'Half-Yearly', subject: 'Mathematics',    date: '2026-11-20', startTime: '09:00', duration: '3 hrs', room: 'Hall A' },
-  { id: 2, name: 'Half-Yearly', subject: 'Science',        date: '2026-11-22', startTime: '09:00', duration: '3 hrs', room
+  { id: 2, name: 'Half-Yearly', subject: 'Science',        date: '2026-11-22', startTime: '09:00', duration: '3 hrs', room: 'Hall A' },
+  { id: 3, name: 'Half-Yearly', subject: 'English',        date: '2026-11-24', startTime: '09:00', duration: '3 hrs', room: 'Hall A' },
+  { id: 4, name: 'Half-Yearly', subject: 'Social Science', date: '2026-11-26', startTime: '09:00', duration: '3 hrs', room: 'Hall B' },
+];
+
+export const EVENTS = [
+  { id: 1, name: 'Parent-Teacher Meeting', date: '2026-10-12', time: '09:00 – 13:00', venue: 'Main Auditorium', category: 'Academic',     description: 'Discuss student progress with subject teachers.' },
+  { id: 2, name: 'Inter-House Quiz',       date: '2026-10-18', time: '10:00 – 12:30', venue: 'Seminar Hall',    category: 'Competition',  description: 'Quiz for classes VI–X across all houses.' },
+  { id: 3, name: 'Diwali Celebration',     date: '2026-11-09', time: '11:00 – 13:00', venue: 'School Ground',   category: 'Cultural',     description: 'Cultural performances and diya decoration.' },
+  { id: 4, name: 'Annual Sports Day',      date: '2026-11-25', time: '08:00 – 16:00', venue: 'Sports Ground',   category: 'Sports',       description: 'Kho-Kho, Volleyball, Handball, Badminton, Basketball, athletics.' },
+  { id: 5, name: 'Republic Day',           date: '2027-01-26', time: '08:00 – 10:00', venue: 'School Ground',   category: 'Holiday',      description: 'Flag hoisting ceremony and cultural program.' },
+  { id: 6, name: 'Annual Day',             date: '2027-02-14', time: '17:00 – 21:00', venue: 'Main Auditorium', category: 'School Event', description: 'Annual cultural extravaganza.' },
+];
+
+export const NOTIFICATIONS = [
+  { id: 1, title: 'New homework assigned', message: 'Mathematics — Exercise 4.3 by Prem Sir',      time: '2h ago', unread: true,  type: 'homework' },
+  { id: 2, title: 'New notice published',  message: 'Annual Sports Day 2026 — Register by 15 Nov', time: '5h ago', unread: true,  type: 'notice' },
+  { id: 3, title: 'Attendance updated',    message: 'Marked present for 07 Oct 2026',              time: '1d ago', unread: true,  type: 'attendance' },
+  { id: 4, title: 'Exam announcement',     message: 'Half-Yearly datesheet released',              time: '2d ago', unread: false, type: 'exam' },
+  { id: 5, title: 'Fee reminder',          message: '₹21,000 due on 10 Nov 2026',                  time: '3d ago', unread: true,  type: 'fee' },
+  { id: 6, title: 'New study material',    message: 'Science — Cell Structure notes uploaded',     time: '4d ago', unread: false, type: 'material' },
+  { id: 7, title: 'School event',          message: 'PTM scheduled for 12 Oct 2026',               time: '5d ago', unread: false, type: 'event' },
+];
+
+export const SPORTS = [
+  { name: 'Kho-Kho',    icon: '🏃', level: 'District • State • Inter-school' },
+  { name: 'Volleyball', icon: '🏐', level: 'District • State • Inter-school' },
+  { name: 'Handball',   icon: '🤾', level: 'District • State • Inter-school' },
+  { name: 'Badminton',  icon: '🏸', level: 'District • State • Inter-school' },
+  { name: 'Basketball', icon: '🏀', level: 'District • State • Inter-school' },
+];
+
+export const PREMIUM_PLAN = {
+  price: '5,000',
+  period: 'month',
+  currency: '₹',
+  features: [
+    'Full portal access',
+    'Student & Parent login',
+    'Teacher management',
+    'Fee tracking & receipts',
+    'Attendance system',
+    'Homework & study notes',
+    'Notice board',
+    'Exam & results',
+    'Analytics dashboards',
+    '24/7 support',
+  ],
+};
