@@ -39,9 +39,6 @@ import AccountantDashboard from './pages/accountant/Dashboard';
 import StaffDirectory from './pages/shared/StaffDirectory';
 import StudentDirectory from './pages/shared/StudentDirectory';
 
-// ─────────────────────────────────────────
-// Sidebar nav items per role
-// ─────────────────────────────────────────
 const STUDENT_NAV = [
   { to: '/student', label: 'Dashboard', icon: 'LayoutDashboard', end: true },
   { to: '/profile', label: 'My Profile', icon: 'User' },
@@ -105,13 +102,11 @@ const ACCOUNTANT_NAV = [
 export default function App() {
   return (
     <Routes>
-      {/* ───────── PUBLIC ROUTES ───────── */}
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/about-school" element={<AboutSchool />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
 
-      {/* ───────── STUDENT / PARENT ───────── */}
       <Route element={<ProtectedRoute allow={['STUDENT_PARENT']}><DashboardLayout navItems={STUDENT_NAV} title="Student Dashboard" /></ProtectedRoute>}>
         <Route path="/student" element={<StudentDashboard />} />
         <Route path="/profile" element={<Profile />} />
@@ -134,7 +129,6 @@ export default function App() {
         <Route path="/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───────── TEACHER ───────── */}
       <Route element={<ProtectedRoute allow={['TEACHER']}><DashboardLayout navItems={TEACHER_NAV} title="Teacher Dashboard" /></ProtectedRoute>}>
         <Route path="/teacher" element={<TeacherDashboard />} />
         <Route path="/teacher/classes" element={<TeacherClasses />} />
@@ -148,7 +142,6 @@ export default function App() {
         <Route path="/teacher/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───────── PRINCIPAL ───────── */}
       <Route element={<ProtectedRoute allow={['PRINCIPAL']}><DashboardLayout navItems={PRINCIPAL_NAV} title="Principal Dashboard" /></ProtectedRoute>}>
         <Route path="/principal" element={<PrincipalDashboard />} />
         <Route path="/principal/students" element={<StudentDirectory />} />
@@ -162,7 +155,6 @@ export default function App() {
         <Route path="/principal/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───────── DIRECTOR ───────── */}
       <Route element={<ProtectedRoute allow={['DIRECTOR']}><DashboardLayout navItems={DIRECTOR_NAV} title="Director Dashboard" /></ProtectedRoute>}>
         <Route path="/director" element={<DirectorDashboard />} />
         <Route path="/director/students" element={<StudentDirectory />} />
@@ -175,7 +167,6 @@ export default function App() {
         <Route path="/director/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───────── ACCOUNTANT ───────── */}
       <Route element={<ProtectedRoute allow={['ACCOUNTANT']}><DashboardLayout navItems={ACCOUNTANT_NAV} title="Accounts Dashboard" /></ProtectedRoute>}>
         <Route path="/accountant" element={<AccountantDashboard />} />
         <Route path="/accountant/fees" element={<Fees />} />
@@ -186,8 +177,7 @@ export default function App() {
         <Route path="/accountant/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───────── FALLBACK ───────── */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
-      }
+}
