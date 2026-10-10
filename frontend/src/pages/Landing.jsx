@@ -20,6 +20,7 @@ const features = [
 export default function Landing() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
+      {/* Header */}
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
@@ -37,10 +38,11 @@ export default function Landing() {
             <a href="#about" className="hover:text-orange-700 dark:hover:text-white">About</a>
             <Link to="/about-school" className="hover:text-orange-700 dark:hover:text-white">Our School</Link>
           </nav>
-          <Link to="/login" className="btn-primary text-sm">Login to Portal</Link>
+          <Link to="/login" className="btn-primary text-sm bg-orange-600 hover:bg-orange-700">Login to Portal</Link>
         </div>
       </header>
 
+      {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
@@ -58,10 +60,12 @@ export default function Landing() {
                 A smarter way for students, parents, teachers and school administrators to stay connected — attendance, homework, marks, fees and notices, all in one place.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Link to="/login" className="btn-primary px-6 py-3 text-base">
+                <Link to="/login" className="btn-primary px-6 py-3 text-base bg-orange-600 hover:bg-orange-700">
                   Login to Portal <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a href="#features" className="btn-secondary px-6 py-3 text-base">Explore Platform</a>
+                <Link to="/about-school" className="btn-secondary px-6 py-3 text-base">
+                  Explore Our School
+                </Link>
               </div>
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-600 dark:text-slate-400">
                 {['Role-based access', 'Mobile ready', 'Dark mode', 'Secure login'].map((f) => (
@@ -72,6 +76,7 @@ export default function Landing() {
               </div>
             </div>
 
+            {/* Hero Preview Card */}
             <div className="relative animate-fade-in">
               <div className="relative card p-6 sm:p-8 shadow-2xl">
                 <div className="flex items-center justify-between mb-5">
@@ -117,6 +122,7 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Features */}
       <section id="features" className="py-20 bg-slate-50 dark:bg-slate-900/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center mb-14">
@@ -124,6 +130,9 @@ export default function Landing() {
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
               Everything your school needs — beautifully connected
             </h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-400">
+              Built for the whole school community — students, parents, teachers and administrators.
+            </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {features.map((f) => {
@@ -142,6 +151,7 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Sports Facilities */}
       <section id="sports" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center mb-14">
@@ -167,6 +177,7 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Premium Plan */}
       <section id="premium" className="py-20 bg-gradient-to-br from-orange-600 via-orange-700 to-orange-800 text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
@@ -214,6 +225,7 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* About School */}
       <section id="about" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -276,6 +288,7 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer id="contact" className="bg-slate-900 dark:bg-black text-slate-300 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="sm:col-span-2">
@@ -308,6 +321,7 @@ export default function Landing() {
           </div>
         </div>
 
+        {/* Credits */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -321,10 +335,9 @@ export default function Landing() {
           </div>
           <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs text-slate-500">© 2026 {SCHOOL.name}. All rights reserved.</p>
-            <p className="text-xs text-slate-500">Demo Portal</p>
           </div>
         </div>
       </footer>
     </div>
   );
-}
+      }
