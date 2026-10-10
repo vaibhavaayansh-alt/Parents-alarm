@@ -5,19 +5,19 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useToast } from '../context/ToastContext';
 import NotificationPanel from '../components/layout/NotificationPanel';
-import { SCHOOL } from '../data/demoData';
+import { SCHOOL, CREDITS } from '../data/demoData';
 import { api } from '../services/api';
 import { useApi } from '../hooks/useApi';
 
 function Logo({ compact = false }) {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-navy-600 to-navy-800 text-white flex items-center justify-center font-bold text-sm shadow-sm shrink-0">
-        BF
+      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-orange-700 text-white flex items-center justify-center font-bold text-[10px] shadow-sm shrink-0">
+        SFS
       </div>
       {!compact && (
-        <div className="leading-tight">
-          <p className="text-sm font-bold text-slate-900 dark:text-white">BFPS</p>
+        <div className="leading-tight min-w-0">
+          <p className="text-sm font-bold text-slate-900 dark:text-white">SFS</p>
           <p className="text-[10px] text-slate-500 tracking-wide">PARENTS PLATFORM</p>
         </div>
       )}
@@ -59,7 +59,7 @@ export default function DashboardLayout({ navItems, title }) {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-navy-700 text-white shadow-sm'
+                    ? 'bg-orange-600 text-white shadow-sm'
                     : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`
               }
@@ -72,7 +72,7 @@ export default function DashboardLayout({ navItems, title }) {
       </nav>
       <div className="p-3 border-t border-slate-200 dark:border-slate-800">
         <div className="rounded-xl bg-slate-50 dark:bg-slate-800/50 p-3 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-navy-600 to-navy-800 text-white flex items-center justify-center text-xs font-semibold shrink-0">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 text-white flex items-center justify-center text-xs font-semibold shrink-0">
             {user?.name?.split(' ').map((n) => n[0]).slice(0, 2).join('') || 'U'}
           </div>
           <div className="min-w-0 flex-1">
@@ -89,10 +89,12 @@ export default function DashboardLayout({ navItems, title }) {
 
   return (
     <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950">
+      {/* Desktop sidebar */}
       <aside className="hidden lg:flex lg:flex-col w-64 fixed inset-y-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-30">
         <SidebarContent />
       </aside>
 
+      {/* Mobile sidebar */}
       {sidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-40 flex">
           <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
@@ -102,6 +104,7 @@ export default function DashboardLayout({ navItems, title }) {
         </div>
       )}
 
+      {/* Main */}
       <div className="flex-1 lg:ml-64 flex flex-col min-w-0">
         <header className="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3 px-4 sm:px-6 h-16">
@@ -109,11 +112,6 @@ export default function DashboardLayout({ navItems, title }) {
               <Icons.Menu className="w-5 h-5" />
             </button>
             <h1 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white truncate flex-1">{title}</h1>
-
-            <div className="relative hidden md:block">
-              <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input placeholder="Search..." className="w-56 lg:w-72 pl-9 pr-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-navy-500 focus:ring-2 focus:ring-navy-500/20 text-sm outline-none transition" />
-            </div>
 
             <button onClick={toggleTheme} className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800" title="Toggle theme">
               {theme === 'dark' ? <Icons.Sun className="w-5 h-5" /> : <Icons.Moon className="w-5 h-5" />}
@@ -130,7 +128,7 @@ export default function DashboardLayout({ navItems, title }) {
 
             <div className="relative">
               <button onClick={() => setProfileOpen((v) => !v)} className="flex items-center gap-2 p-1 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-navy-600 to-navy-800 text-white flex items-center justify-center text-xs font-semibold">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 text-white flex items-center justify-center text-xs font-semibold">
                   {user?.name?.split(' ').map((n) => n[0]).slice(0, 2).join('') || 'U'}
                 </div>
               </button>
@@ -170,12 +168,15 @@ export default function DashboardLayout({ navItems, title }) {
           <Outlet />
         </main>
 
-        <footer className="border-t border-slate-200 dark:border-slate-800 px-6 py-4 text-xs text-slate-500 text-center">
-          © 2026 {SCHOOL.name} — Demo Portal
+        <footer className="border-t border-slate-200 dark:border-slate-800 px-6 py-4 text-xs text-slate-500 text-center space-y-1">
+          <p>© 2026 {SCHOOL.name} — Demo Portal</p>
+          <p className="text-[10px]">
+            Developed by <span className="font-semibold text-slate-600 dark:text-slate-400">{CREDITS.developer.name}</span> · Guided by <span className="font-semibold text-slate-600 dark:text-slate-400">{CREDITS.guide.name}</span>
+          </p>
         </footer>
       </div>
 
       <NotificationPanel open={notifOpen} onClose={() => setNotifOpen(false)} notifications={notifications || []} />
     </div>
   );
-                      }
+}
