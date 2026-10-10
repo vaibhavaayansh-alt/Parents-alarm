@@ -19,6 +19,11 @@ import Fees from './pages/student/Fees';
 import Timetable from './pages/student/Timetable';
 import Exams from './pages/student/Exams';
 import Events from './pages/student/Events';
+import WriteToSchool from './pages/student/WriteToSchool';
+import OnlineTest from './pages/student/OnlineTest';
+import BusLocation from './pages/student/BusLocation';
+import Comments from './pages/student/Comments';
+import AnnualCalendar from './pages/student/AnnualCalendar';
 import Settings from './pages/shared/Settings';
 import NotificationsPage from './pages/shared/NotificationsPage';
 
@@ -46,8 +51,13 @@ const STUDENT_NAV = [
   { to: '/notes', label: 'Notes & Material', icon: 'FileText' },
   { to: '/notices', label: 'Notice Board', icon: 'Bell' },
   { to: '/timetable', label: 'Timetable', icon: 'CalendarDays' },
+  { to: '/annual-calendar', label: 'Annual Calendar', icon: 'CalendarRange' },
   { to: '/exams', label: 'Examinations', icon: 'ClipboardList' },
+  { to: '/online-test', label: 'Online Test', icon: 'PenTool' },
   { to: '/events', label: 'Events', icon: 'PartyPopper' },
+  { to: '/bus-location', label: 'Bus Location', icon: 'MapPin' },
+  { to: '/comments', label: 'Comments', icon: 'MessageSquare' },
+  { to: '/write-to-school', label: 'Write To School', icon: 'Send' },
   { to: '/teachers', label: 'Teachers', icon: 'Users' },
   { to: '/fees', label: 'Fees & Accounts', icon: 'Wallet' },
 ];
@@ -104,23 +114,6 @@ export default function App() {
       {/* ───────── STUDENT / PARENT ───────── */}
       <Route element={<ProtectedRoute allow={['STUDENT_PARENT']}><DashboardLayout navItems={STUDENT_NAV} title="Student Dashboard" /></ProtectedRoute>}>
         <Route path="/student" element={<StudentDashboard />} />
-        <Route path="/student/profile" element={<Profile />} />
-        <Route path="/student/marksheet" element={<Marksheet />} />
-        <Route path="/student/attendance" element={<Attendance />} />
-        <Route path="/student/homework" element={<Homework />} />
-        <Route path="/student/notes" element={<Notes />} />
-        <Route path="/student/notices" element={<Notices />} />
-        <Route path="/student/timetable" element={<Timetable />} />
-        <Route path="/student/exams" element={<Exams />} />
-        <Route path="/student/events" element={<Events />} />
-        <Route path="/student/teachers" element={<Teachers />} />
-        <Route path="/student/fees" element={<Fees />} />
-        <Route path="/student/settings" element={<Settings />} />
-        <Route path="/student/notifications" element={<NotificationsPage />} />
-      </Route>
-
-      {/* Also allow short paths for student */}
-      <Route element={<ProtectedRoute allow={['STUDENT_PARENT']}><DashboardLayout navItems={STUDENT_NAV} title="Student Dashboard" /></ProtectedRoute>}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/marksheet" element={<Marksheet />} />
         <Route path="/attendance" element={<Attendance />} />
@@ -128,8 +121,13 @@ export default function App() {
         <Route path="/notes" element={<Notes />} />
         <Route path="/notices" element={<Notices />} />
         <Route path="/timetable" element={<Timetable />} />
+        <Route path="/annual-calendar" element={<AnnualCalendar />} />
         <Route path="/exams" element={<Exams />} />
+        <Route path="/online-test" element={<OnlineTest />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/bus-location" element={<BusLocation />} />
+        <Route path="/comments" element={<Comments />} />
+        <Route path="/write-to-school" element={<WriteToSchool />} />
         <Route path="/teachers" element={<Teachers />} />
         <Route path="/fees" element={<Fees />} />
         <Route path="/settings" element={<Settings />} />
@@ -144,12 +142,8 @@ export default function App() {
         <Route path="/teacher/attendance" element={<TeacherAttendance />} />
         <Route path="/teacher/homework" element={<TeacherHomework />} />
         <Route path="/teacher/notes" element={<TeacherNotes />} />
-      </Route>
-
-      {/* Teacher also needs profile, notices, settings, notifications */}
-      <Route element={<ProtectedRoute allow={['TEACHER']}><DashboardLayout navItems={TEACHER_NAV} title="Teacher Dashboard" /></ProtectedRoute>}>
-        <Route path="/teacher/profile" element={<Profile />} />
         <Route path="/teacher/notices" element={<Notices />} />
+        <Route path="/teacher/profile" element={<Profile />} />
         <Route path="/teacher/settings" element={<Settings />} />
         <Route path="/teacher/notifications" element={<NotificationsPage />} />
       </Route>
@@ -166,12 +160,6 @@ export default function App() {
         <Route path="/principal/profile" element={<Profile />} />
         <Route path="/principal/settings" element={<Settings />} />
         <Route path="/principal/notifications" element={<NotificationsPage />} />
-      </Route>
-
-      {/* Principal also allow short paths */}
-      <Route element={<ProtectedRoute allow={['PRINCIPAL']}><DashboardLayout navItems={PRINCIPAL_NAV} title="Principal Dashboard" /></ProtectedRoute>}>
-        <Route path="/students" element={<StudentDirectory />} />
-        <Route path="/staff" element={<StaffDirectory />} />
       </Route>
 
       {/* ───────── DIRECTOR ───────── */}
