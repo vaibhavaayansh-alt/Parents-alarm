@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Unauthorized from './pages/Unauthorized';
@@ -95,15 +95,32 @@ const ACCOUNTANT_NAV = [
 export default function App() {
   return (
     <Routes>
-      {/* Public routes */}
+      {/* ───────── PUBLIC ROUTES ───────── */}
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/about-school" element={<AboutSchool />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
 
-      {/* ───── Student / Parent ───── */}
+      {/* ───────── STUDENT / PARENT ───────── */}
       <Route element={<ProtectedRoute allow={['STUDENT_PARENT']}><DashboardLayout navItems={STUDENT_NAV} title="Student Dashboard" /></ProtectedRoute>}>
         <Route path="/student" element={<StudentDashboard />} />
+        <Route path="/student/profile" element={<Profile />} />
+        <Route path="/student/marksheet" element={<Marksheet />} />
+        <Route path="/student/attendance" element={<Attendance />} />
+        <Route path="/student/homework" element={<Homework />} />
+        <Route path="/student/notes" element={<Notes />} />
+        <Route path="/student/notices" element={<Notices />} />
+        <Route path="/student/timetable" element={<Timetable />} />
+        <Route path="/student/exams" element={<Exams />} />
+        <Route path="/student/events" element={<Events />} />
+        <Route path="/student/teachers" element={<Teachers />} />
+        <Route path="/student/fees" element={<Fees />} />
+        <Route path="/student/settings" element={<Settings />} />
+        <Route path="/student/notifications" element={<NotificationsPage />} />
+      </Route>
+
+      {/* Also allow short paths for student */}
+      <Route element={<ProtectedRoute allow={['STUDENT_PARENT']}><DashboardLayout navItems={STUDENT_NAV} title="Student Dashboard" /></ProtectedRoute>}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/marksheet" element={<Marksheet />} />
         <Route path="/attendance" element={<Attendance />} />
@@ -119,7 +136,7 @@ export default function App() {
         <Route path="/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───── Teacher ───── */}
+      {/* ───────── TEACHER ───────── */}
       <Route element={<ProtectedRoute allow={['TEACHER']}><DashboardLayout navItems={TEACHER_NAV} title="Teacher Dashboard" /></ProtectedRoute>}>
         <Route path="/teacher" element={<TeacherDashboard />} />
         <Route path="/teacher/classes" element={<TeacherClasses />} />
@@ -127,51 +144,61 @@ export default function App() {
         <Route path="/teacher/attendance" element={<TeacherAttendance />} />
         <Route path="/teacher/homework" element={<TeacherHomework />} />
         <Route path="/teacher/notes" element={<TeacherNotes />} />
-        <Route path="/notices" element={<Notices />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───── Principal ───── */}
+      {/* Teacher also needs profile, notices, settings, notifications */}
+      <Route element={<ProtectedRoute allow={['TEACHER']}><DashboardLayout navItems={TEACHER_NAV} title="Teacher Dashboard" /></ProtectedRoute>}>
+        <Route path="/teacher/profile" element={<Profile />} />
+        <Route path="/teacher/notices" element={<Notices />} />
+        <Route path="/teacher/settings" element={<Settings />} />
+        <Route path="/teacher/notifications" element={<NotificationsPage />} />
+      </Route>
+
+      {/* ───────── PRINCIPAL ───────── */}
       <Route element={<ProtectedRoute allow={['PRINCIPAL']}><DashboardLayout navItems={PRINCIPAL_NAV} title="Principal Dashboard" /></ProtectedRoute>}>
         <Route path="/principal" element={<PrincipalDashboard />} />
-        <Route path="/students" element={<StudentDirectory />} />
-        <Route path="/staff" element={<StaffDirectory />} />
-        <Route path="/notices" element={<Notices />} />
-        <Route path="/exams" element={<Exams />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/attendance" element={<Attendance />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/principal/students" element={<StudentDirectory />} />
+        <Route path="/principal/staff" element={<StaffDirectory />} />
+        <Route path="/principal/notices" element={<Notices />} />
+        <Route path="/principal/exams" element={<Exams />} />
+        <Route path="/principal/events" element={<Events />} />
+        <Route path="/principal/attendance" element={<Attendance />} />
+        <Route path="/principal/profile" element={<Profile />} />
+        <Route path="/principal/settings" element={<Settings />} />
+        <Route path="/principal/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───── Director ───── */}
+      {/* Principal also allow short paths */}
+      <Route element={<ProtectedRoute allow={['PRINCIPAL']}><DashboardLayout navItems={PRINCIPAL_NAV} title="Principal Dashboard" /></ProtectedRoute>}>
+        <Route path="/students" element={<StudentDirectory />} />
+        <Route path="/staff" element={<StaffDirectory />} />
+      </Route>
+
+      {/* ───────── DIRECTOR ───────── */}
       <Route element={<ProtectedRoute allow={['DIRECTOR']}><DashboardLayout navItems={DIRECTOR_NAV} title="Director Dashboard" /></ProtectedRoute>}>
         <Route path="/director" element={<DirectorDashboard />} />
-        <Route path="/students" element={<StudentDirectory />} />
-        <Route path="/staff" element={<StaffDirectory />} />
-        <Route path="/fees" element={<Fees />} />
-        <Route path="/notices" element={<Notices />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/director/students" element={<StudentDirectory />} />
+        <Route path="/director/staff" element={<StaffDirectory />} />
+        <Route path="/director/fees" element={<Fees />} />
+        <Route path="/director/notices" element={<Notices />} />
+        <Route path="/director/events" element={<Events />} />
+        <Route path="/director/profile" element={<Profile />} />
+        <Route path="/director/settings" element={<Settings />} />
+        <Route path="/director/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* ───── Accountant ───── */}
+      {/* ───────── ACCOUNTANT ───────── */}
       <Route element={<ProtectedRoute allow={['ACCOUNTANT']}><DashboardLayout navItems={ACCOUNTANT_NAV} title="Accounts Dashboard" /></ProtectedRoute>}>
         <Route path="/accountant" element={<AccountantDashboard />} />
-        <Route path="/fees" element={<Fees />} />
-        <Route path="/students" element={<StudentDirectory />} />
-        <Route path="/notices" element={<Notices />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/accountant/fees" element={<Fees />} />
+        <Route path="/accountant/students" element={<StudentDirectory />} />
+        <Route path="/accountant/notices" element={<Notices />} />
+        <Route path="/accountant/profile" element={<Profile />} />
+        <Route path="/accountant/settings" element={<Settings />} />
+        <Route path="/accountant/notifications" element={<NotificationsPage />} />
       </Route>
 
-      {/* Fallback */}
+      {/* ───────── FALLBACK ───────── */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
