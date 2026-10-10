@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Lock, User, ArrowLeft, GraduationCap, Users, Crown, Calculator, Shield } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
-import { DEMO_ACCOUNTS } from '../data/demoData';
+import { DEMO_ACCOUNTS, SCHOOL, CREDITS } from '../data/demoData';
 
 const ROLES = [
   { key: 'student',    label: 'Student / Parent', icon: Users,         idLabel: 'Admission Number' },
@@ -56,39 +56,54 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950">
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-900 relative overflow-hidden">
+      {/* Left panel — branding */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-orange-600 via-orange-700 to-orange-900 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-navy-400/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-orange-400/10 blur-3xl" />
         <div className="relative z-10 flex flex-col justify-between p-12 text-white w-full">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white">
             <ArrowLeft className="w-4 h-4" /> Back to home
           </Link>
           <div>
-            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center font-bold text-xl mb-6">BF</div>
-            <h1 className="text-3xl font-bold leading-tight">Welcome to<br />Bright Future Public School</h1>
-            <p className="mt-4 text-navy-100 leading-relaxed max-w-md">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center font-bold text-xs mb-6">SFS</div>
+            <h1 className="text-3xl font-bold leading-tight">
+              Welcome to<br />{SCHOOL.name}
+            </h1>
+            <p className="mt-4 text-orange-100 leading-relaxed max-w-md">
               Your complete school portal — attendance, homework, marks, fees and notices, all in one secure place.
             </p>
             <div className="mt-10 space-y-4">
-              {['Real-time academic tracking', 'Digital notices & circulars', 'Secure role-based access'].map((f) => (
+              {[
+                'Real-time academic tracking',
+                'Digital notices & circulars',
+                'Secure role-based access',
+              ].map((f) => (
                 <div key={f} className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   </div>
-                  <span className="text-sm text-navy-100">{f}</span>
+                  <span className="text-sm text-orange-100">{f}</span>
                 </div>
               ))}
             </div>
           </div>
-          <p className="text-xs text-navy-300">© 2026 Bright Future Public School · Demo</p>
+          <div className="text-xs text-orange-200 space-y-1">
+            <p>© 2026 {SCHOOL.name} · Demo</p>
+            <p className="text-[10px]">
+              Developed by <span className="font-semibold">{CREDITS.developer.name}</span> · Guided by <span className="font-semibold">{CREDITS.guide.name}</span>
+            </p>
+          </div>
         </div>
       </div>
 
+      {/* Right panel — form */}
       <div className="flex-1 flex items-center justify-center p-6 sm:p-8 lg:p-12">
         <div className="w-full max-w-md">
+          {/* Mobile branding */}
           <div className="lg:hidden text-center mb-8">
-            <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-navy-600 to-navy-800 text-white items-center justify-center font-bold mb-3">BF</div>
-            <h1 className="text-xl font-bold text-slate-900 dark:text-white">BFPS Parents Platform</h1>
+            <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 text-white items-center justify-center font-bold mb-3 text-xs">SFS</div>
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white">SFS Parents Platform</h1>
+            <p className="text-xs text-slate-500 mt-1">{SCHOOL.name}</p>
           </div>
 
           <div className="mb-6">
@@ -96,6 +111,7 @@ export default function Login() {
             <p className="text-sm text-slate-500 mt-1.5">Select your role and enter your credentials</p>
           </div>
 
+          {/* Role chips */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-6">
             {ROLES.map((r) => {
               const Icon = r.icon;
@@ -107,7 +123,7 @@ export default function Login() {
                   onClick={() => { setRole(r.key); setError(''); }}
                   className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl border text-[11px] font-medium transition ${
                     active
-                      ? 'border-navy-600 bg-navy-50 dark:bg-navy-500/10 text-navy-800 dark:text-navy-200 shadow-sm'
+                      ? 'border-orange-600 bg-orange-50 dark:bg-orange-500/10 text-orange-800 dark:text-orange-300 shadow-sm'
                       : 'border-slate-200 dark:border-slate-800 text-slate-500 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
@@ -136,7 +152,11 @@ export default function Login() {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="label mb-0">Password</label>
-                <button type="button" onClick={() => push('Password reset requires admin approval in demo mode.', 'info')} className="text-xs font-medium text-navy-700 dark:text-navy-300 hover:underline">
+                <button
+                  type="button"
+                  onClick={() => push('Password reset requires admin approval in demo mode.', 'info')}
+                  className="text-xs font-medium text-orange-700 dark:text-orange-400 hover:underline"
+                >
                   Forgot password?
                 </button>
               </div>
@@ -150,14 +170,23 @@ export default function Login() {
                   placeholder="Enter password"
                   autoComplete="current-password"
                 />
-                <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600">
+                <button
+                  type="button"
+                  onClick={() => setShowPass((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600"
+                >
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
 
             <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 cursor-pointer select-none">
-              <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-navy-700 focus:ring-navy-500" />
+              <input
+                type="checkbox"
+                checked={remember}
+                onChange={(e) => setRemember(e.target.checked)}
+                className="w-4 h-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
+              />
               Remember me on this device
             </label>
 
@@ -167,7 +196,7 @@ export default function Login() {
               </div>
             )}
 
-            <button type="submit" disabled={loading} className="btn-primary w-full py-3 text-base">
+            <button type="submit" disabled={loading} className="btn-primary w-full py-3 text-base bg-orange-600 hover:bg-orange-700 focus:ring-orange-500">
               {loading ? (
                 <>
                   <div className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
@@ -177,6 +206,7 @@ export default function Login() {
             </button>
           </form>
 
+          {/* Demo credentials */}
           <div className="mt-6 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-3.5">
             <p className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Demo credentials — click to autofill:</p>
             <div className="flex flex-wrap gap-1.5">
@@ -185,7 +215,7 @@ export default function Login() {
                   key={key}
                   type="button"
                   onClick={() => autofill(key)}
-                  className="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-navy-500 hover:text-navy-700 dark:hover:text-navy-300 transition"
+                  className="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-orange-500 hover:text-orange-700 dark:hover:text-orange-400 transition"
                 >
                   {acct.role.replace('_', ' / ')}
                 </button>
@@ -197,8 +227,13 @@ export default function Login() {
           <p className="text-center text-xs text-slate-500 mt-6">
             This is a demo portal. Do not use real credentials.
           </p>
+
+          {/* Footer credits */}
+          <p className="text-center text-[10px] text-slate-400 mt-2">
+            Developed by <span className="font-semibold">{CREDITS.developer.name}</span> · Guided by <span className="font-semibold">{CREDITS.guide.name}</span>
+          </p>
         </div>
       </div>
     </div>
   );
-            }
+}
