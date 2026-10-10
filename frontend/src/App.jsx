@@ -69,37 +69,37 @@ const TEACHER_NAV = [
   { to: '/teacher/attendance', label: 'Attendance', icon: 'CalendarCheck' },
   { to: '/teacher/homework', label: 'Homework', icon: 'ClipboardList' },
   { to: '/teacher/notes', label: 'Notes & Material', icon: 'FileText' },
-  { to: '/notices', label: 'Notices', icon: 'Bell' },
-  { to: '/profile', label: 'My Profile', icon: 'User' },
+  { to: '/teacher/notices', label: 'Notices', icon: 'Bell' },
+  { to: '/teacher/profile', label: 'My Profile', icon: 'User' },
 ];
 
 const PRINCIPAL_NAV = [
   { to: '/principal', label: 'Dashboard', icon: 'LayoutDashboard', end: true },
-  { to: '/students', label: 'Students', icon: 'Users' },
-  { to: '/staff', label: 'Staff Directory', icon: 'Briefcase' },
-  { to: '/notices', label: 'Notices', icon: 'Bell' },
-  { to: '/exams', label: 'Examinations', icon: 'ClipboardList' },
-  { to: '/events', label: 'Events', icon: 'PartyPopper' },
-  { to: '/attendance', label: 'Attendance', icon: 'CalendarCheck' },
-  { to: '/profile', label: 'My Profile', icon: 'User' },
+  { to: '/principal/students', label: 'Students', icon: 'Users' },
+  { to: '/principal/staff', label: 'Staff Directory', icon: 'Briefcase' },
+  { to: '/principal/notices', label: 'Notices', icon: 'Bell' },
+  { to: '/principal/exams', label: 'Examinations', icon: 'ClipboardList' },
+  { to: '/principal/events', label: 'Events', icon: 'PartyPopper' },
+  { to: '/principal/attendance', label: 'Attendance', icon: 'CalendarCheck' },
+  { to: '/principal/profile', label: 'My Profile', icon: 'User' },
 ];
 
 const DIRECTOR_NAV = [
   { to: '/director', label: 'Dashboard', icon: 'LayoutDashboard', end: true },
-  { to: '/students', label: 'Students', icon: 'Users' },
-  { to: '/staff', label: 'Staff', icon: 'Briefcase' },
-  { to: '/fees', label: 'Fees & Accounts', icon: 'Wallet' },
-  { to: '/notices', label: 'Notices', icon: 'Bell' },
-  { to: '/events', label: 'Events', icon: 'PartyPopper' },
-  { to: '/profile', label: 'My Profile', icon: 'User' },
+  { to: '/director/students', label: 'Students', icon: 'Users' },
+  { to: '/director/staff', label: 'Staff', icon: 'Briefcase' },
+  { to: '/director/fees', label: 'Fees & Accounts', icon: 'Wallet' },
+  { to: '/director/notices', label: 'Notices', icon: 'Bell' },
+  { to: '/director/events', label: 'Events', icon: 'PartyPopper' },
+  { to: '/director/profile', label: 'My Profile', icon: 'User' },
 ];
 
 const ACCOUNTANT_NAV = [
   { to: '/accountant', label: 'Dashboard', icon: 'LayoutDashboard', end: true },
-  { to: '/fees', label: 'Fees & Accounts', icon: 'Wallet' },
-  { to: '/students', label: 'Students', icon: 'Users' },
-  { to: '/notices', label: 'Notices', icon: 'Bell' },
-  { to: '/profile', label: 'My Profile', icon: 'User' },
+  { to: '/accountant/fees', label: 'Fees & Accounts', icon: 'Wallet' },
+  { to: '/accountant/students', label: 'Students', icon: 'Users' },
+  { to: '/accountant/notices', label: 'Notices', icon: 'Bell' },
+  { to: '/accountant/profile', label: 'My Profile', icon: 'User' },
 ];
 
 export default function App() {
@@ -190,4 +190,4 @@ export default function App() {
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
-}
+      }
